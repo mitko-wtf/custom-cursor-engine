@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Custom Cursor Engine</title>
+    <link rel="stylesheet" href="popup.css">
+  </head>
+  <body>
+    <main class="popup-shell">
+      <header class="popup-header">
+        <div>
+          <h1>Cursor Engine</h1>
+          <p>Visual presets for demos and screen shares.</p>
+        </div>
+        <label class="toggle">
+          <input id="enabled" type="checkbox">
+          <span></span>
+        </label>
+      </header>
+
+      <section class="control-group">
+        <label for="cursorStyle">Cursor</label>
+        <select id="cursorStyle"></select>
+      </section>
+
+      <section class="control-group">
+        <label for="trailStyle">Trail</label>
+        <select id="trailStyle"></select>
+      </section>
+
+      <section class="control-group">
+        <label for="clickEffect">Click</label>
+        <select id="clickEffect"></select>
+      </section>
+
+      <section class="control-group">
+        <label for="trailIntensity">Trail intensity</label>
+        <select id="trailIntensity"></select>
+      </section>
+
+      <footer class="popup-footer">
+        <button id="reset" type="button">Reset</button>
+        <span id="status" aria-live="polite"></span>
+      </footer>
+    </main>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,8 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Custom Cursor Engine",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Replaces the native browser cursor with a smooth animated dot, ring, trail, hover states, and click feedback.",
+  "permissions": ["storage"],
+  "action": {
+    "default_title": "Custom Cursor Engine",
+    "default_popup": "popup.html"
+  },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
