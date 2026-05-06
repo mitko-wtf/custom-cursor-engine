@@ -13,7 +13,8 @@ This is a visual enhancement tool only. It does not automate pages, collect data
 - 10 trail styles
 - 10 click effects
 - Trail intensity control
-- Extension popup for live configuration
+- Extension popup with visual preset tiles
+- Custom accent color, click color, dot size, and ring size
 - Throttled trail particles that fade and clean themselves up
 - Click effects plus a compressed ring while pressed
 - Hover state for links, buttons, form controls, and `[role="button"]`
@@ -26,11 +27,12 @@ This is a visual enhancement tool only. It does not automate pages, collect data
 3. Click **Load unpacked**.
 4. Select this `custom-cursor-extension` folder.
 5. Visit a normal website and move the mouse.
-6. Click the extension icon to switch cursor, trail, click effect, or intensity.
+6. Click the extension icon to choose cursor, trail, and click presets.
+7. Use the customize panel to tune colors, dot size, ring size, and trail intensity.
 
 ## How it works
 
-The extension injects `content.js` and `styles.css` into pages via Manifest V3 content scripts. The popup saves settings to `chrome.storage.sync`, and the content script updates live when those settings change.
+The extension injects `content.js` and `styles.css` into pages via Manifest V3 content scripts. The popup saves settings to `chrome.storage.sync`, and the content script updates live when those settings change. Preset choices are applied with CSS classes; custom colors and sizes are applied with CSS variables.
 
 The CSS hides the native cursor and styles four DOM-based cursor layers:
 

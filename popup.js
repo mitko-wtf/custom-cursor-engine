@@ -5,17 +5,21 @@ const DEFAULT_SETTINGS = {
   cursorStyle: "neon",
   trailStyle: "comet",
   clickEffect: "pulse",
-  trailIntensity: "balanced"
+  trailIntensity: "balanced",
+  accentColor: "#00f5ff",
+  hotColor: "#ff3df2",
+  dotSize: 7,
+  ringSize: 30
 };
 
-const OPTIONS = {
+const PRESETS = {
   cursorStyle: [
-    ["neon", "Neon Ring"],
+    ["neon", "Neon"],
     ["spotlight", "Spotlight"],
-    ["glass", "Glass Lens"],
+    ["glass", "Glass"],
     ["laser", "Laser"],
-    ["mono", "Mono Focus"],
-    ["sunset", "Sunset Pop"],
+    ["mono", "Mono"],
+    ["sunset", "Sunset"],
     ["plasma", "Plasma"],
     ["terminal", "Terminal"],
     ["bubble", "Bubble"],
@@ -37,39 +41,45 @@ const OPTIONS = {
     ["pulse", "Pulse"],
     ["ripple", "Ripple"],
     ["burst", "Burst"],
-    ["shockwave", "Shockwave"],
+    ["shockwave", "Shock"],
     ["sparkle", "Sparkle"],
     ["target", "Target"],
     ["pop", "Pop"],
     ["halo", "Halo"],
     ["square", "Square"],
     ["confetti", "Confetti"]
-  ],
-  trailIntensity: [
-    ["subtle", "Subtle"],
-    ["balanced", "Balanced"],
-    ["loud", "Loud"],
-    ["off", "Off"]
   ]
 };
+
+const TRAIL_INTENSITY = [
+  ["subtle", "Subtle"],
+  ["balanced", "Balanced"],
+  ["loud", "Loud"],
+  ["off", "Off"]
+];
 
 const controls = {
   enabled: document.getElementById("enabled"),
   cursorStyle: document.getElementById("cursorStyle"),
   trailStyle: document.getElementById("trailStyle"),
   clickEffect: document.getElementById("clickEffect"),
+  cursorStyleLabel: document.getElementById("cursorStyleLabel"),
+  trailStyleLabel: document.getElementById("trailStyleLabel"),
+  clickEffectLabel: document.getElementById("clickEffectLabel"),
   trailIntensity: document.getElementById("trailIntensity"),
+  accentColor: document.getElementById("accentColor"),
+  hotColor: document.getElementById("hotColor"),
+  dotSize: document.getElementById("dotSize"),
+  ringSize: document.getElementById("ringSize"),
   reset: document.getElementById("reset"),
   status: document.getElementById("status")
 };
 
-function fillSelect(id) {
-  OPTIONS[id].forEach(([value, label]) => {
-    const option = document.createElement("option");
-    option.value = value;
-    option.textContent = label;
-    controls[id].appendChild(option);
-  });
+let currentSettings = { ...DEFAULT_SETTINGS };
+
+function getLabel(group, value) {
+  const match = PRESETS[group]?.find(([presetValue]) => presetValue === value);
+  return match ? match[1] : value;
 }
 
 function setStatus(message) {
@@ -81,33 +91,100 @@ function setStatus(message) {
   }, 900);
 }
 
+function createPresetButton(group, value, label) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = `preset-card preset-${group}-${value}`;
+  button.dataset.group = group;
+  button.dataset.value = value;
+  button.setAttribute("role", "radio");
+  button.setAttribute("aria-label", label);
+  button.innerHTML = `
+    <span class="preset-preview" aria-hidden="true">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
+    <span class="preset-name">${label}</span>
+  `;
+  button.addEventListener("click", () => {
+    saveSettings({ [group]: value });
+  });
+  controls[group].appendChild(button);
+}
+
+function fillPresetGroup(group) {
+  PRESETS[group].forEach(([value, label]) => createPresetButton(group, value, label));
+}
+
+function fillTrailIntensity() {
+  TRAIL_INTENSITY.forEach(([value, label]) => {
+    const option = document.createElement("option");
+    option.value = value;
+    option.textContent = label;
+    controls.trailIntensity.appendChild(option);
+  });
+}
+
+function updateActivePreset(group, value) {
+  [...controls[group].querySelectorAll(".preset-card")].forEach((button) => {
+    const isActive = button.dataset.value === value;
+    button.classList.toggle("is-active", isActive);
+    button.setAttribute("aria-checked", String(isActive));
+  });
+}
+
 function render(settings) {
-  controls.enabled.checked = settings.enabled;
-  controls.cursorStyle.value = settings.cursorStyle;
-  controls.trailStyle.value = settings.trailStyle;
-  controls.clickEffect.value = settings.clickEffect;
-  controls.trailIntensity.value = settings.trailIntensity;
+  currentSettings = { ...DEFAULT_SETTINGS, ...settings };
+
+  controls.enabled.checked = currentSettings.enabled;
+  controls.trailIntensity.value = currentSettings.trailIntensity;
+  controls.accentColor.value = currentSettings.accentColor;
+  controls.hotColor.value = currentSettings.hotColor;
+  controls.dotSize.value = currentSettings.dotSize;
+  controls.ringSize.value = currentSettings.ringSize;
+
+  updateActivePreset("cursorStyle", currentSettings.cursorStyle);
+  updateActivePreset("trailStyle", currentSettings.trailStyle);
+  updateActivePreset("clickEffect", currentSettings.clickEffect);
+
+  controls.cursorStyleLabel.textContent = getLabel("cursorStyle", currentSettings.cursorStyle);
+  controls.trailStyleLabel.textContent = getLabel("trailStyle", currentSettings.trailStyle);
+  controls.clickEffectLabel.textContent = getLabel("clickEffect", currentSettings.clickEffect);
 }
 
 function saveSettings(partialSettings) {
+  const nextSettings = { ...currentSettings, ...partialSettings };
   chrome.storage.sync.set(partialSettings, () => {
+    render(nextSettings);
     setStatus("Saved");
   });
 }
 
-Object.keys(OPTIONS).forEach(fillSelect);
+Object.keys(PRESETS).forEach(fillPresetGroup);
+fillTrailIntensity();
 
 chrome.storage.sync.get(DEFAULT_SETTINGS, (settings) => {
-  render({ ...DEFAULT_SETTINGS, ...settings });
+  render(settings);
 });
 
 controls.enabled.addEventListener("change", () => {
   saveSettings({ enabled: controls.enabled.checked });
 });
 
-["cursorStyle", "trailStyle", "clickEffect", "trailIntensity"].forEach((id) => {
-  controls[id].addEventListener("change", () => {
+controls.trailIntensity.addEventListener("change", () => {
+  saveSettings({ trailIntensity: controls.trailIntensity.value });
+});
+
+["accentColor", "hotColor"].forEach((id) => {
+  controls[id].addEventListener("input", () => {
     saveSettings({ [id]: controls[id].value });
+  });
+});
+
+["dotSize", "ringSize"].forEach((id) => {
+  controls[id].addEventListener("input", () => {
+    saveSettings({ [id]: Number(controls[id].value) });
   });
 });
 

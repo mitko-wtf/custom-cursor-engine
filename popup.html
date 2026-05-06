@@ -11,37 +11,73 @@
       <header class="popup-header">
         <div>
           <h1>Cursor Engine</h1>
-          <p>Visual presets for demos and screen shares.</p>
+          <p>Pick a demo-ready cursor, trail, and click effect.</p>
         </div>
-        <label class="toggle">
+        <label class="toggle" title="Enable cursor engine">
           <input id="enabled" type="checkbox">
           <span></span>
         </label>
       </header>
 
-      <section class="control-group">
-        <label for="cursorStyle">Cursor</label>
-        <select id="cursorStyle"></select>
+      <section class="picker-section">
+        <div class="section-heading">
+          <h2>Cursor</h2>
+          <span id="cursorStyleLabel"></span>
+        </div>
+        <div id="cursorStyle" class="preset-grid" role="radiogroup" aria-label="Cursor style"></div>
       </section>
 
-      <section class="control-group">
-        <label for="trailStyle">Trail</label>
-        <select id="trailStyle"></select>
+      <section class="picker-section">
+        <div class="section-heading">
+          <h2>Trail</h2>
+          <span id="trailStyleLabel"></span>
+        </div>
+        <div id="trailStyle" class="preset-grid" role="radiogroup" aria-label="Trail style"></div>
       </section>
 
-      <section class="control-group">
-        <label for="clickEffect">Click</label>
-        <select id="clickEffect"></select>
+      <section class="picker-section">
+        <div class="section-heading">
+          <h2>Click</h2>
+          <span id="clickEffectLabel"></span>
+        </div>
+        <div id="clickEffect" class="preset-grid" role="radiogroup" aria-label="Click effect"></div>
       </section>
 
-      <section class="control-group">
-        <label for="trailIntensity">Trail intensity</label>
-        <select id="trailIntensity"></select>
+      <section class="custom-panel">
+        <div class="section-heading">
+          <h2>Customize</h2>
+          <span id="status" aria-live="polite"></span>
+        </div>
+
+        <div class="color-row">
+          <label>
+            <span>Accent</span>
+            <input id="accentColor" type="color">
+          </label>
+          <label>
+            <span>Click</span>
+            <input id="hotColor" type="color">
+          </label>
+        </div>
+
+        <label class="field">
+          <span>Trail intensity</span>
+          <select id="trailIntensity"></select>
+        </label>
+
+        <label class="field">
+          <span>Dot size</span>
+          <input id="dotSize" type="range" min="4" max="14" step="1">
+        </label>
+
+        <label class="field">
+          <span>Ring size</span>
+          <input id="ringSize" type="range" min="20" max="54" step="1">
+        </label>
       </section>
 
       <footer class="popup-footer">
         <button id="reset" type="button">Reset</button>
-        <span id="status" aria-live="polite"></span>
       </footer>
     </main>
 

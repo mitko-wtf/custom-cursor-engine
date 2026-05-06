@@ -12,7 +12,11 @@
     cursorStyle: "neon",
     trailStyle: "comet",
     clickEffect: "pulse",
-    trailIntensity: "balanced"
+    trailIntensity: "balanced",
+    accentColor: "#00f5ff",
+    hotColor: "#ff3df2",
+    dotSize: 7,
+    ringSize: 30
   };
 
   const TRAIL_CONFIG = {
@@ -146,6 +150,10 @@
     state.root.classList.add(`${TRAIL_PREFIX}${state.settings.trailStyle}`);
     state.root.classList.add(`${CLICK_PREFIX}${state.settings.clickEffect}`);
     state.root.classList.toggle("is-disabled", !state.settings.enabled);
+    state.root.style.setProperty("--cursor-accent", state.settings.accentColor);
+    state.root.style.setProperty("--cursor-hot", state.settings.hotColor);
+    state.root.style.setProperty("--cursor-dot-size", `${state.settings.dotSize}px`);
+    state.root.style.setProperty("--cursor-ring-size", `${state.settings.ringSize}px`);
     document.documentElement.classList.toggle("custom-cursor-disabled", !state.settings.enabled);
   }
 
