@@ -256,13 +256,22 @@ button:hover {
   gap: 6px;
 }
 
-input[type="color"] {
+input[type="color"],
+input[type="text"] {
   width: 100%;
   height: 34px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--panel-raised);
+  color: var(--text);
+}
+
+input[type="color"] {
   padding: 4px;
+}
+
+input[type="text"] {
+  padding: 0 10px;
 }
 
 select,

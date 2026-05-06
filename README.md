@@ -9,12 +9,12 @@ This is a visual enhancement tool only. It does not automate pages, collect data
 - Native cursor hidden with CSS
 - Instant dot pointer for precision
 - Smooth ring follower using `requestAnimationFrame` and lerp interpolation
-- 10 cursor styles
-- 10 trail styles
-- 10 click effects
+- 20 cursor styles, including neon, retro, arcade, emoji-like, and nostalgic looks
+- 24 trail styles, including glitter, rainbow, hearts, stars, snow, cards, coins, rain, fire, and emoji
+- 23 click effects, including fireworks, explosions, comic bursts, pixel blasts, magic novas, and emoji bursts
 - Trail intensity control
 - Extension popup with visual preset tiles
-- Custom accent color, click color, dot size, and ring size
+- Custom accent color, click color, dot size, ring size, and emoji
 - Throttled trail particles that fade and clean themselves up
 - Click effects plus a compressed ring while pressed
 - Hover state for links, buttons, form controls, and `[role="button"]`

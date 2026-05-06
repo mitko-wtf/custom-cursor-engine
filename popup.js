@@ -9,7 +9,8 @@ const DEFAULT_SETTINGS = {
   accentColor: "#00f5ff",
   hotColor: "#ff3df2",
   dotSize: 7,
-  ringSize: 30
+  ringSize: 30,
+  customEmoji: "✨"
 };
 
 const PRESETS = {
@@ -23,7 +24,17 @@ const PRESETS = {
     ["plasma", "Plasma"],
     ["terminal", "Terminal"],
     ["bubble", "Bubble"],
-    ["minimal", "Minimal"]
+    ["minimal", "Minimal"],
+    ["geocities", "GeoCities"],
+    ["arcade", "Arcade"],
+    ["vhs", "VHS"],
+    ["magicwand", "Magic"],
+    ["smiley", "Smiley"],
+    ["heart", "Heart"],
+    ["star", "Star"],
+    ["candy", "Candy"],
+    ["clock", "Clock"],
+    ["rainbow", "Rainbow"]
   ],
   trailStyle: [
     ["comet", "Comet"],
@@ -35,7 +46,21 @@ const PRESETS = {
     ["pixel", "Pixel"],
     ["strobe", "Strobe"],
     ["ink", "Ink"],
-    ["dust", "Dust"]
+    ["dust", "Dust"],
+    ["glitter", "Glitter"],
+    ["rainbow", "Rainbow"],
+    ["hearts", "Hearts"],
+    ["stars", "Stars"],
+    ["snow", "Snow"],
+    ["coins", "Coins"],
+    ["cards", "Cards"],
+    ["matrix", "Matrix"],
+    ["leaves", "Leaves"],
+    ["rain", "Rain"],
+    ["magic", "Magic"],
+    ["fire", "Fire"],
+    ["party", "Party"],
+    ["emoji", "Emoji"]
   ],
   clickEffect: [
     ["pulse", "Pulse"],
@@ -47,7 +72,20 @@ const PRESETS = {
     ["pop", "Pop"],
     ["halo", "Halo"],
     ["square", "Square"],
-    ["confetti", "Confetti"]
+    ["confetti", "Confetti"],
+    ["fireworks", "Fireworks"],
+    ["boom", "Boom"],
+    ["pixelblast", "Pixel Blast"],
+    ["starburst", "Starburst"],
+    ["heartsplosion", "Hearts"],
+    ["coinburst", "Coins"],
+    ["cardblast", "Cards"],
+    ["comicpow", "POW"],
+    ["ringstorm", "Ringstorm"],
+    ["magicnova", "Magic Nova"],
+    ["meteor", "Meteor"],
+    ["smoke", "Smoke"],
+    ["emoji", "Emoji"]
   ]
 };
 
@@ -71,6 +109,7 @@ const controls = {
   hotColor: document.getElementById("hotColor"),
   dotSize: document.getElementById("dotSize"),
   ringSize: document.getElementById("ringSize"),
+  customEmoji: document.getElementById("customEmoji"),
   reset: document.getElementById("reset"),
   status: document.getElementById("status")
 };
@@ -143,6 +182,7 @@ function render(settings) {
   controls.hotColor.value = currentSettings.hotColor;
   controls.dotSize.value = currentSettings.dotSize;
   controls.ringSize.value = currentSettings.ringSize;
+  controls.customEmoji.value = currentSettings.customEmoji;
 
   updateActivePreset("cursorStyle", currentSettings.cursorStyle);
   updateActivePreset("trailStyle", currentSettings.trailStyle);
@@ -186,6 +226,11 @@ controls.trailIntensity.addEventListener("change", () => {
   controls[id].addEventListener("input", () => {
     saveSettings({ [id]: Number(controls[id].value) });
   });
+});
+
+controls.customEmoji.addEventListener("input", () => {
+  const emoji = controls.customEmoji.value.trim() || DEFAULT_SETTINGS.customEmoji;
+  saveSettings({ customEmoji: emoji.slice(0, 4) });
 });
 
 controls.reset.addEventListener("click", () => {

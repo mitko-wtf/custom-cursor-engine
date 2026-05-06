@@ -222,6 +222,112 @@ html:not(.custom-cursor-disabled) body * {
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.72);
 }
 
+.cursor-style-geocities .cursor-dot {
+  background: #ffff00;
+  box-shadow: 0 0 0 2px #ff00ff, 0 0 16px rgba(255, 255, 0, 0.75);
+}
+
+.cursor-style-geocities .cursor-ring {
+  border-style: dashed;
+  border-color: #00ffff;
+  background: rgba(255, 0, 255, 0.08);
+  box-shadow: 0 0 18px rgba(255, 0, 255, 0.48);
+}
+
+.cursor-style-arcade .cursor-dot {
+  border-radius: 2px;
+  background: #ffd166;
+  image-rendering: pixelated;
+  box-shadow: 0 0 0 2px #111, 0 0 0 4px #74ff9e;
+}
+
+.cursor-style-arcade .cursor-ring {
+  border-radius: 4px;
+  border-color: #ffd166;
+  background: rgba(116, 255, 158, 0.08);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.42);
+}
+
+.cursor-style-vhs .cursor-dot {
+  background: #fff;
+  box-shadow: -3px 0 0 rgba(255, 0, 0, 0.7), 3px 0 0 rgba(0, 245, 255, 0.7);
+}
+
+.cursor-style-vhs .cursor-ring {
+  border-color: rgba(255, 255, 255, 0.72);
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.08) 0 2px, transparent 2px 5px);
+  box-shadow: -4px 0 0 rgba(255, 0, 0, 0.2), 4px 0 0 rgba(0, 245, 255, 0.2);
+}
+
+.cursor-style-magicwand .cursor-dot,
+.cursor-style-smiley .cursor-dot,
+.cursor-style-heart .cursor-dot,
+.cursor-style-star .cursor-dot,
+.cursor-style-candy .cursor-dot,
+.cursor-style-clock .cursor-dot {
+  display: grid;
+  place-items: center;
+  width: calc(var(--cursor-dot-size) * 2.3);
+  height: calc(var(--cursor-dot-size) * 2.3);
+  background: transparent;
+  box-shadow: none;
+  font-size: calc(var(--cursor-dot-size) * 2);
+  line-height: 1;
+}
+
+.cursor-style-magicwand .cursor-dot::before {
+  content: "✦";
+  color: #fff;
+  text-shadow: 0 0 12px var(--cursor-hot), 0 0 20px var(--cursor-accent);
+}
+
+.cursor-style-smiley .cursor-dot::before {
+  content: "☺";
+  color: #ffd166;
+  text-shadow: 0 0 8px rgba(255, 209, 102, 0.75);
+}
+
+.cursor-style-heart .cursor-dot::before {
+  content: "♥";
+  color: var(--cursor-hot);
+  text-shadow: 0 0 12px rgba(255, 61, 242, 0.68);
+}
+
+.cursor-style-star .cursor-dot::before {
+  content: "★";
+  color: #fff7ad;
+  text-shadow: 0 0 12px rgba(255, 209, 102, 0.8);
+}
+
+.cursor-style-candy .cursor-dot::before {
+  content: "●";
+  color: #fff;
+  text-shadow: -4px 0 0 #ff3df2, 4px 0 0 #00f5ff, 0 0 12px rgba(255, 255, 255, 0.72);
+}
+
+.cursor-style-clock .cursor-dot::before {
+  content: "◴";
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.7);
+}
+
+.cursor-style-rainbow .cursor-dot {
+  background: conic-gradient(#ff004c, #ffdd00, #00ff88, #00b7ff, #8b5cff, #ff004c);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.55);
+}
+
+.cursor-style-rainbow .cursor-ring,
+.cursor-style-magicwand .cursor-ring,
+.cursor-style-smiley .cursor-ring,
+.cursor-style-heart .cursor-ring,
+.cursor-style-star .cursor-ring,
+.cursor-style-candy .cursor-ring,
+.cursor-style-clock .cursor-ring {
+  border-color: var(--cursor-accent);
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: 0 0 18px rgba(0, 245, 255, 0.28);
+}
+
 .cursor-trail {
   width: 13px;
   height: 13px;
@@ -304,6 +410,98 @@ html:not(.custom-cursor-disabled) body * {
   background: rgba(255, 209, 102, 0.86);
   box-shadow: 0 0 8px rgba(255, 209, 102, 0.34);
   animation-name: cursor-trail-dust;
+}
+
+.trail-style-glitter .cursor-trail,
+.trail-style-rainbow .cursor-trail,
+.trail-style-matrix .cursor-trail {
+  width: 9px;
+  height: 9px;
+}
+
+.trail-style-glitter .cursor-trail {
+  background: #fff;
+  box-shadow: 0 0 0 2px #ffd166, 0 0 16px rgba(255, 209, 102, 0.72), 0 0 24px rgba(255, 61, 242, 0.35);
+  animation-name: cursor-trail-glitter;
+}
+
+.trail-style-rainbow .cursor-trail {
+  background: conic-gradient(#ff004c, #ffdd00, #00ff88, #00b7ff, #8b5cff, #ff004c);
+  box-shadow: 0 0 14px rgba(255, 255, 255, 0.5);
+}
+
+.trail-style-hearts .cursor-trail,
+.trail-style-stars .cursor-trail,
+.trail-style-snow .cursor-trail,
+.trail-style-coins .cursor-trail,
+.trail-style-cards .cursor-trail,
+.trail-style-leaves .cursor-trail,
+.trail-style-rain .cursor-trail,
+.trail-style-magic .cursor-trail,
+.trail-style-fire .cursor-trail,
+.trail-style-party .cursor-trail,
+.trail-style-emoji .cursor-trail {
+  display: grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  background: transparent;
+  box-shadow: none;
+  font: 18px/1 Georgia, serif;
+  animation-name: cursor-trail-symbol;
+}
+
+.trail-style-hearts .cursor-trail {
+  color: var(--cursor-hot);
+  text-shadow: 0 0 10px rgba(255, 61, 242, 0.55);
+}
+
+.trail-style-stars .cursor-trail,
+.trail-style-magic .cursor-trail {
+  color: #fff7ad;
+  text-shadow: 0 0 10px rgba(255, 209, 102, 0.62);
+}
+
+.trail-style-snow .cursor-trail {
+  color: #dff8ff;
+  text-shadow: 0 0 12px rgba(0, 245, 255, 0.48);
+}
+
+.trail-style-coins .cursor-trail {
+  color: #ffd166;
+  text-shadow: 0 0 8px rgba(255, 209, 102, 0.55);
+}
+
+.trail-style-cards .cursor-trail {
+  color: #fff;
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.42);
+}
+
+.trail-style-matrix .cursor-trail {
+  border-radius: 2px;
+  background: #74ff9e;
+  box-shadow: 0 0 12px rgba(116, 255, 158, 0.7);
+  animation-name: cursor-trail-matrix;
+}
+
+.trail-style-leaves .cursor-trail {
+  color: #74ff9e;
+  animation-name: cursor-trail-leaf;
+}
+
+.trail-style-rain .cursor-trail {
+  color: #8ee8ff;
+  animation-name: cursor-trail-rain;
+}
+
+.trail-style-fire .cursor-trail {
+  color: #ff7a18;
+  text-shadow: 0 0 12px rgba(255, 122, 24, 0.62);
+}
+
+.trail-style-party .cursor-trail,
+.trail-style-emoji .cursor-trail {
+  font-family: system-ui, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
 }
 
 .cursor-click {
@@ -392,6 +590,79 @@ html:not(.custom-cursor-disabled) body * {
   animation-name: cursor-click-confetti;
 }
 
+.click-effect-fireworks .cursor-click {
+  width: 7px;
+  height: 7px;
+  border: 0;
+  background: #fff;
+  box-shadow: 0 0 10px var(--cursor-accent), 0 0 18px var(--cursor-hot);
+  animation-name: cursor-click-firework;
+}
+
+.click-effect-boom .cursor-click,
+.click-effect-starburst .cursor-click,
+.click-effect-heartsplosion .cursor-click,
+.click-effect-coinburst .cursor-click,
+.click-effect-cardblast .cursor-click,
+.click-effect-magicnova .cursor-click,
+.click-effect-smoke .cursor-click,
+.click-effect-emoji .cursor-click {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border: 0;
+  background: transparent;
+  font: 20px/1 system-ui, "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  animation-name: cursor-click-symbolburst;
+}
+
+.click-effect-pixelblast .cursor-click {
+  width: 9px;
+  height: 9px;
+  border: 0;
+  border-radius: 2px;
+  background: #74ff9e;
+  box-shadow: 0 0 0 2px #111, 0 0 12px rgba(116, 255, 158, 0.58);
+  animation-name: cursor-click-pixelblast;
+}
+
+.click-effect-comicpow .cursor-click {
+  display: grid;
+  place-items: center;
+  width: 74px;
+  height: 42px;
+  border: 3px solid #111;
+  border-radius: 7px;
+  color: #111;
+  background: #ffd166;
+  box-shadow: 5px 5px 0 #ff3df2;
+  font: 900 16px/1 system-ui, sans-serif;
+  animation-name: cursor-click-comicpow;
+}
+
+.click-effect-ringstorm .cursor-click {
+  width: 22px;
+  height: 22px;
+  border-color: var(--cursor-accent);
+  animation-name: cursor-click-ringstorm;
+}
+
+.click-effect-meteor .cursor-click {
+  width: 8px;
+  height: 28px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(180deg, #fff, var(--cursor-hot), transparent);
+  box-shadow: 0 0 16px rgba(255, 61, 242, 0.62);
+  animation-name: cursor-click-meteor;
+}
+
+.click-effect-smoke .cursor-click {
+  color: rgba(255, 255, 255, 0.65);
+  filter: blur(1px);
+}
+
 @keyframes cursor-trail-fade {
   0% {
     opacity: 0.78;
@@ -459,6 +730,79 @@ html:not(.custom-cursor-disabled) body * {
     opacity: 0;
     translate: 4px -10px;
     scale: 0.1;
+  }
+}
+
+@keyframes cursor-trail-glitter {
+  0% {
+    opacity: 0.95;
+    rotate: 0deg;
+    scale: 1;
+  }
+
+  100% {
+    opacity: 0;
+    rotate: 180deg;
+    scale: 0.06;
+  }
+}
+
+@keyframes cursor-trail-symbol {
+  0% {
+    opacity: 0.92;
+    translate: 0 0;
+    rotate: 0deg;
+    scale: 1;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 0 -12px;
+    rotate: 24deg;
+    scale: 0.35;
+  }
+}
+
+@keyframes cursor-trail-matrix {
+  0% {
+    opacity: 0.86;
+    translate: 0 0;
+    scale: 1 1.4;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 0 18px;
+    scale: 0.2 2.2;
+  }
+}
+
+@keyframes cursor-trail-leaf {
+  0% {
+    opacity: 0.9;
+    translate: 0 0;
+    rotate: -12deg;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 12px 18px;
+    rotate: 95deg;
+    scale: 0.3;
+  }
+}
+
+@keyframes cursor-trail-rain {
+  0% {
+    opacity: 0.75;
+    translate: 0 0;
+    scale: 1 1.4;
+  }
+
+  100% {
+    opacity: 0;
+    translate: 0 24px;
+    scale: 0.4 2.2;
   }
 }
 
@@ -597,6 +941,104 @@ html:not(.custom-cursor-disabled) body * {
     opacity: 0;
     rotate: calc(var(--click-rotate) + 240deg);
     translate: var(--click-x) var(--click-y);
+  }
+}
+
+@keyframes cursor-click-firework {
+  0% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 0.8;
+  }
+
+  55% {
+    opacity: 0.95;
+    scale: 1.4;
+  }
+
+  100% {
+    opacity: 0;
+    translate: calc(var(--click-x) * 1.35) calc(var(--click-y) * 1.35);
+    scale: 0.05;
+  }
+}
+
+@keyframes cursor-click-symbolburst {
+  0% {
+    opacity: 1;
+    rotate: var(--click-rotate);
+    translate: 0 0;
+    scale: 0.7;
+  }
+
+  100% {
+    opacity: 0;
+    rotate: calc(var(--click-rotate) + 120deg);
+    translate: calc(var(--click-x) * 1.2) calc(var(--click-y) * 1.2);
+    scale: 0.18;
+  }
+}
+
+@keyframes cursor-click-pixelblast {
+  0% {
+    opacity: 1;
+    translate: 0 0;
+    scale: 1;
+  }
+
+  100% {
+    opacity: 0;
+    translate: calc(var(--click-x) * 1.5) calc(var(--click-y) * 1.5);
+    scale: 0.1;
+  }
+}
+
+@keyframes cursor-click-comicpow {
+  0% {
+    opacity: 0;
+    scale: 0.2;
+    rotate: -8deg;
+  }
+
+  18% {
+    opacity: 1;
+    scale: 1.08;
+  }
+
+  100% {
+    opacity: 0;
+    scale: 1.45;
+    rotate: 6deg;
+  }
+}
+
+@keyframes cursor-click-ringstorm {
+  0% {
+    opacity: 0.85;
+    translate: 0 0;
+    scale: 0.2;
+  }
+
+  100% {
+    opacity: 0;
+    translate: var(--click-x) var(--click-y);
+    scale: 2.4;
+  }
+}
+
+@keyframes cursor-click-meteor {
+  0% {
+    opacity: 1;
+    rotate: var(--click-rotate);
+    translate: 0 0;
+    scale: 1;
+  }
+
+  100% {
+    opacity: 0;
+    rotate: var(--click-rotate);
+    translate: calc(var(--click-x) * 1.45) calc(var(--click-y) * 1.45);
+    scale: 0.2 1.9;
   }
 }
 

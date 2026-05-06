@@ -16,7 +16,8 @@
     accentColor: "#00f5ff",
     hotColor: "#ff3df2",
     dotSize: 7,
-    ringSize: 30
+    ringSize: 30,
+    customEmoji: "✨"
   };
 
   const TRAIL_CONFIG = {
@@ -36,7 +37,20 @@
     pop: 8,
     halo: 1,
     square: 6,
-    confetti: 14
+    confetti: 14,
+    fireworks: 18,
+    boom: 16,
+    pixelblast: 20,
+    starburst: 16,
+    heartsplosion: 18,
+    coinburst: 14,
+    cardblast: 12,
+    comicpow: 1,
+    ringstorm: 5,
+    magicnova: 18,
+    meteor: 12,
+    smoke: 9,
+    emoji: 16
   };
 
   const RING_LERP = 0.16;
@@ -194,6 +208,44 @@
     return (Math.PI * 2 * index) / Math.max(total, 1);
   }
 
+  function pickFrom(list, index) {
+    return list[index % list.length];
+  }
+
+  function getTrailContent(style) {
+    const contentByStyle = {
+      hearts: ["💖", "💕", "💗"],
+      stars: ["✦", "✧", "★", "☆"],
+      snow: ["❄", "✻", "✼"],
+      coins: ["◉", "◎", "●"],
+      cards: ["♠", "♥", "♦", "♣"],
+      leaves: ["❦", "❧", "✤"],
+      rain: ["┃", "╎", "╏"],
+      magic: ["✦", "✧", "✺"],
+      fire: ["🔥", "✶", "✷"],
+      party: ["🎉", "✨", "🎊"],
+      emoji: [state.settings.customEmoji || DEFAULT_SETTINGS.customEmoji]
+    };
+
+    return contentByStyle[style] || null;
+  }
+
+  function getClickContent(effect) {
+    const contentByEffect = {
+      boom: ["💥", "✹", "✷"],
+      starburst: ["✦", "✧", "★"],
+      heartsplosion: ["💖", "💕", "💗"],
+      coinburst: ["◉", "◎", "●"],
+      cardblast: ["♠", "♥", "♦", "♣"],
+      comicpow: ["POW!"],
+      magicnova: ["✦", "✧", "✺"],
+      smoke: ["●", "○", "◌"],
+      emoji: [state.settings.customEmoji || DEFAULT_SETTINGS.customEmoji]
+    };
+
+    return contentByEffect[effect] || null;
+  }
+
   function createTrail(x, y) {
     const trailConfig = TRAIL_CONFIG[state.settings.trailIntensity] || TRAIL_CONFIG.balanced;
 
@@ -203,6 +255,10 @@
 
     const trail = document.createElement("div");
     trail.className = "cursor-trail";
+    const trailContent = getTrailContent(state.settings.trailStyle);
+    if (trailContent) {
+      trail.textContent = pickFrom(trailContent, state.activeTrails);
+    }
     trail.style.transform = `translate3d(${x}px, ${y}px, 0) translate(-50%, -50%)`;
 
     state.root.appendChild(trail);
@@ -234,6 +290,10 @@
     const distance = 22 + (index % 4) * 7;
     const particle = document.createElement("div");
     particle.className = "cursor-click";
+    const clickContent = getClickContent(state.settings.clickEffect);
+    if (clickContent) {
+      particle.textContent = pickFrom(clickContent, index);
+    }
     particle.style.setProperty("--click-x", `${Math.cos(angle) * distance}px`);
     particle.style.setProperty("--click-y", `${Math.sin(angle) * distance}px`);
     particle.style.setProperty("--click-rotate", `${Math.round((angle * 180) / Math.PI)}deg`);
